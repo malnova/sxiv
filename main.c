@@ -25,6 +25,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include <libgen.h>
 #include <locale.h>
 #include <signal.h>
 #include <sys/select.h>
@@ -124,6 +125,7 @@ void check_add_file(char *filename, bool given)
 	}
 
 	files[fileidx].name = estrdup(filename);
+	files[fileidx].base = basename(path);
 	files[fileidx].path = path;
 	if (given)
 		files[fileidx].flags |= FF_WARN;
@@ -146,6 +148,7 @@ void remove_file(int n, bool manual)
 	if (files[n].path != files[n].name)
 		free((void*) files[n].path);
 	free((void*) files[n].name);
+	free((void*) files[n].base);
 
 	if (n + 1 < filecnt) {
 		if (tns.thumbs != NULL) {
@@ -352,7 +355,14 @@ void update_info(void)
 {
 	unsigned int i, fn, fw;
 	const char * mark;
+	char title[512];
 	win_bar_t *l = &win.bar.l, *r = &win.bar.r;
+
+	/* update title contents */
+	snprintf(title, sizeof(title), "%s%s - sxiv",
+	    files[fileidx].base,
+	    files[fileidx].flags & FF_MARK ? "* " : "");
+	win_set_title(&win, title);
 
 	/* update bar contents */
 	if (win.bar.h == 0)

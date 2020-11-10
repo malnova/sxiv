@@ -117,6 +117,7 @@ typedef enum {
 
 typedef struct {
 	const char *name; /* as given by user */
+	const char *base; /* basename */
 	const char *path; /* always absolute */
 	fileflags_t flags;
 } fileinfo_t;
