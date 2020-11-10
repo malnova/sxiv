@@ -132,8 +132,6 @@ static const keymap_t keys[] = {
 	{ ControlMask,  XK_K,             i_scroll_to_edge,     DIR_UP },
 	{ ControlMask,  XK_L,             i_scroll_to_edge,     DIR_RIGHT },
 	{ 0,            XK_asterisk,      i_set_zoom,           100 },
-	{ 0,            XK_asterisk,      i_fit_to_win,         SCALE_DOWN },
-	{ 0,            XK_asterisk,      i_fit_to_win,         SCALE_FIT },
 	{ 0,            XK_W,             i_fit_to_win,         SCALE_WIDTH },
 	{ 0,            XK_H,             i_fit_to_win,         SCALE_HEIGHT },
 	{ 0,            XK_L,             i_rotate,             DEGREE_270 },
