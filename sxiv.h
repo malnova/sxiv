@@ -262,6 +262,7 @@ struct opt {
 	bool from_stdin;
 	bool to_stdout;
 	bool recursive;
+    bool randomize;
 	int filecnt;
 	int startnum;
 
