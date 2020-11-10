@@ -54,7 +54,7 @@ static const bool ALPHA_LAYER = false;
 #ifdef _THUMBS_CONFIG
 
 /* thumbnail sizes in pixels (width == height): */
-static const int thumb_sizes[] = { 32, 64, 96, 128, 160, 192, 224, 256 };
+static const int thumb_sizes[] = { 32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352 };
 
 /* thumbnail size at startup, index into thumb_sizes[]: */
 static const int THUMB_SIZE = 3;
