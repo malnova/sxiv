@@ -25,7 +25,7 @@ static const float zoom_levels[] = {
      400.0,  500.0,  600.0,  700.0,
      850.0, 1000.0, 1150.0, 1300.0,
     1500.0, 1700.0, 1900.0, 2100.0,
-    2400.0, 2700.0, 3000.0
+    2400.0, 2700.0, 3000.0, 4000.0
 };
 
 /* default slideshow delay (in sec, overwritten via -S option): */
@@ -126,15 +126,15 @@ static const keymap_t keys[] = {
 	{ 0,            XK_Up,            i_scroll,             DIR_UP },
 	{ 0,            XK_l,             i_scroll,             DIR_RIGHT },
 	{ 0,            XK_Right,         i_scroll,             DIR_RIGHT },
-	{ 0,            XK_H,             i_scroll_to_edge,     DIR_LEFT },
-	{ 0,            XK_J,             i_scroll_to_edge,     DIR_DOWN },
-	{ 0,            XK_K,             i_scroll_to_edge,     DIR_UP },
-	{ 0,            XK_L,             i_scroll_to_edge,     DIR_RIGHT },
+	{ ControlMask,  XK_H,             i_scroll_to_edge,     DIR_LEFT },
+	{ ControlMask,  XK_J,             i_scroll_to_edge,     DIR_DOWN },
+	{ ControlMask,  XK_K,             i_scroll_to_edge,     DIR_UP },
+	{ ControlMask,  XK_L,             i_scroll_to_edge,     DIR_RIGHT },
 	{ 0,            XK_equal,         i_set_zoom,           100 },
 	{ 0,            XK_w,             i_fit_to_win,         SCALE_DOWN },
-	{ 0,            XK_W,             i_fit_to_win,         SCALE_FIT },
-	{ 0,            XK_e,             i_fit_to_win,         SCALE_WIDTH },
-	{ 0,            XK_E,             i_fit_to_win,         SCALE_HEIGHT },
+	{ 0,            XK_e,             i_fit_to_win,         SCALE_FIT },
+	{ 0,            XK_W,             i_fit_to_win,         SCALE_WIDTH },
+	{ 0,            XK_H,             i_fit_to_win,         SCALE_HEIGHT },
 	{ 0,            XK_less,          i_rotate,             DEGREE_270 },
 	{ 0,            XK_greater,       i_rotate,             DEGREE_90 },
 	{ 0,            XK_question,      i_rotate,             DEGREE_180 },
