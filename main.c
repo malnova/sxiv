@@ -45,6 +45,7 @@ void redraw(void);
 void reset_cursor(void);
 void animate(void);
 void slideshow(void);
+int randint(int limit);
 void clear_resize(void);
 
 appmode_t mode;
@@ -454,8 +455,40 @@ void animate(void)
 
 void slideshow(void)
 {
-	load_image(fileidx + 1 < filecnt ? fileidx + 1 : 0);
+	int fileidx_next;
+
+	if(options->randomize){
+		// We really don't want to see the same image twice
+		do {
+			fileidx_next = randint(filecnt);
+		} while (fileidx_next == fileidx);
+	} else {
+		fileidx_next = fileidx + 1 < filecnt ? fileidx + 1 : 0;
+	}
+
+	load_image(fileidx_next);
 	redraw();
+}
+
+/* @esonn:
+ * Instead of just using rand() % limit, we use the function below, trying to
+ * minimize skews in the sequence. This is as good as it gets when using
+ * rand(), but it's still a compromise: By looping, this function *will* take
+ * longer than a single rand() call, but provides better results. However, it's
+ * still faster than using actual cryptographic-strength PRNG or something
+ * similar (hashing, etc) by far most of the time.
+ * See https://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130
+ * */
+int randint(int limit)
+{
+    int divisor = RAND_MAX/(limit);
+    int retval;
+
+    do {
+        retval = rand() / divisor;
+    } while (retval > limit);
+
+    return retval;
 }
 
 void clear_resize(void)
@@ -866,6 +899,11 @@ int main(int argc, char **argv)
 		}
 		free(filename);
 	}
+
+
+    if(options->randomize){
+        srand(time(NULL));
+    }
 
 	for (i = 0; i < options->filecnt; i++) {
 		filename = options->filenames[i];
