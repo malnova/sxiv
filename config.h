@@ -25,7 +25,7 @@ static const float zoom_levels[] = {
      400.0,  500.0,  600.0,  700.0,
      850.0, 1000.0, 1150.0, 1300.0,
     1500.0, 1700.0, 1900.0, 2100.0,
-    2400.0, 2700.0, 3000.0
+    2400.0, 2700.0, 3000.0, 4000.0
 };
 
 /* default slideshow delay (in sec, overwritten via -S option): */
