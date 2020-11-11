@@ -1,4 +1,7 @@
 #!/bin/sh
+# Pour qu'une action s'applique à toutes les images marquées, il faut
+# l'inclure dans une boucle ; par exemple :
+# while read file; do mogrify -rotate 90 "$file"; done ;;
 
 case "$1" in
     "C-c")
@@ -6,9 +9,9 @@ case "$1" in
     "C-t")
         xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
     "C-Delete")
-        while read file; do rm "$file"; done ;;
+        rm "$file" ;;
     "C-L")
-        while read file; do mogrify -rotate -90 "$file"; done ;;
+        mogrify -rotate -90 "$file" ;;
     "C-R")
-        while read file; do mogrify -rotate +90 "$file"; done ;;
+        mogrify -rotate +90 "$file" ;;
 esac
