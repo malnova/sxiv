@@ -48,7 +48,7 @@ static const bool ANTI_ALIAS = true;
 /* if true, use a checkerboard background for alpha layer,
  * toggled with 'A' key binding
  */
-static const bool ALPHA_LAYER = false;
+static const bool ALPHA_LAYER = true;
 
 #endif
 #ifdef _THUMBS_CONFIG
