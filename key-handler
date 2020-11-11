@@ -1,0 +1,14 @@
+#!/bin/sh
+
+case "$1" in
+    "C-c")
+        filetype=$(file -b --mime-type "$file") && xclip -selection clipboard -t $filetype -i $file ;;
+    "C-t")
+        xclip -in -filter | tr '\n' ' ' | xclip -in -selection clipboard ;;
+    "C-Delete")
+        while read file; do rm "$file"; done ;;
+    "C-L")
+        while read file; do mogrify -rotate -90 "$file"; done ;;
+    "C-R")
+        while read file; do mogrify -rotate +90 "$file"; done ;;
+esac
