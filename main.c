@@ -148,7 +148,6 @@ void remove_file(int n, bool manual)
 	if (files[n].path != files[n].name)
 		free((void*) files[n].path);
 	free((void*) files[n].name);
-	free((void*) files[n].base);
 
 	if (n + 1 < filecnt) {
 		if (tns.thumbs != NULL) {
