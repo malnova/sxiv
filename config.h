@@ -138,7 +138,7 @@ static const keymap_t keys[] = {
 	{ 0,            XK_underscore,    i_flip,               FLIP_VERTICAL },
 	{ 0,            XK_a,             i_toggle_antialias,   None },
 	{ 0,            XK_A,             i_toggle_alpha,       None },
-	{ 0,            XK_s,             i_slideshow,          None },
+	{ 0,            XK_d,             i_slideshow,          None },
 };
 
 /* mouse button mappings for image mode: */

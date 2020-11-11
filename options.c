@@ -93,6 +93,12 @@ void parse_options(int argc, char **argv)
 			case 'c':
 				_options.clean_cache = true;
 				break;
+			case 'd':
+				n = strtof(optarg, &end) * 10;
+				if (*end != '\0' || n <= 0)
+					error(EXIT_FAILURE, 0, "Invalid argument for option -d: %s", optarg);
+				_options.slideshow = n;
+				break;
 			case 'e':
 				n = strtol(optarg, &end, 0);
 				if (*end != '\0')
@@ -141,22 +147,16 @@ void parse_options(int argc, char **argv)
 			case 'R':
 				_options.randomize = true;
 				break;
-			case 'S':
-				n = strtof(optarg, &end) * 10;
-				if (*end != '\0' || n <= 0)
-					error(EXIT_FAILURE, 0, "Invalid argument for option -S: %s", optarg);
-				_options.slideshow = n;
-				break;
 			case 's':
 				s = strchr(scalemodes, optarg[0]);
 				if (s == NULL || *s == '\0' || strlen(optarg) != 1)
 					error(EXIT_FAILURE, 0, "Invalid argument for option -s: %s", optarg);
 				_options.scalemode = s - scalemodes;
 				break;
-			case 't':
+			case 'v':
 				_options.thumb_mode = true;
 				break;
-			case 'v':
+			case 'V':
 				print_version();
 				exit(EXIT_SUCCESS);
 			case 'Z':
