@@ -615,8 +615,8 @@ void on_keypress(XKeyEvent *kev)
 	unsigned int sh = 0;
 	KeySym ksym, shksym;
 	char dummy, key;
-    bool bound = false;
-    bool dirty = false;
+	bool bound = false;
+	bool dirty = false;
 
 	XLookupString(kev, &key, 1, &ksym, NULL);
 
@@ -644,11 +644,13 @@ void on_keypress(XKeyEvent *kev)
 		    keys[i].cmd >= 0 && keys[i].cmd < CMD_COUNT &&
 		    (cmds[keys[i].cmd].mode < 0 || cmds[keys[i].cmd].mode == mode))
 		{
-			if (cmds[keys[i].cmd].func(keys[i].arg)) dirty = true;
-            bound = true;
+			if (cmds[keys[i].cmd].func(keys[i].arg))
+				dirty = true;
+			bound = true;
 		}
 	}
-    if (!bound) run_key_handler(XKeysymToString(ksym), kev->state & ~sh);
+    if (!bound)
+		run_key_handler(XKeysymToString(ksym), kev->state & ~sh);
 	if (dirty)
 		redraw();
 	prefix = 0;
