@@ -384,7 +384,7 @@ void update_info(void)
 			if (img.ss.delay % 10 != 0)
 				bar_put(r, "%2.1fs" BAR_SEP, (float)img.ss.delay / 10);
 			else
-				bar_put(r, "%ds (%ds)" BAR_SEP, img.ss.delay / 10, (filecnt - (fileidx + 1)) * img.ss.delay / 10);
+				bar_put(r, "%ds" BAR_SEP, img.ss.delay / 10);
 		}
 		if (img.gamma != 0)
 			bar_put(r, "G%+d" BAR_SEP, img.gamma);
