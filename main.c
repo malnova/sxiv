@@ -649,7 +649,7 @@ void on_keypress(XKeyEvent *kev)
 			bound = true;
 		}
 	}
-    if (!bound)
+	if (!bound)
 		run_key_handler(XKeysymToString(ksym), kev->state & ~sh);
 	if (dirty)
 		redraw();
