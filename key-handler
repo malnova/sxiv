@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Called by sxiv(1) after any unbound key is pressed.
 # The key combo is passed as its first argument. Passed via stdin are the
 # images to act upon, one path per line: all marked images, if in thumbnail
@@ -14,7 +14,32 @@
 
 case "$1" in
     "e")
-        while read file; do exif_data=$(exiv2 -q -ps -- "$file"); dunstify -r 4739 -t 3000 "$exif_data"; done ;;
+        while read file ; do
+            exif_data=$(exiftool "$file");
+            mime=$(echo "$exif_data" | grep -ioP 'MIME Type \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            make=$(echo "$exif_data" | grep -ioP 'Make \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            model=$(echo "$exif_data" | grep -ioP 'Camera Model Name \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            date=$(echo "$exif_data" | grep -ioP 'Create Date \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            exposure_time=$(echo "$exif_data" | grep -ioP 'Exposure Time \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            compensation=$(echo "$exif_data" | grep -ioP 'Exposure Compensation \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            flash=$(echo "$exif_data" | grep -ioP 'Flash  \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            focal=$(echo "$exif_data" | grep -ioP 'Focal Length  \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            iso=$(echo "$exif_data" | grep -ioP 'ISO  \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            exposure_program=$(echo "$exif_data" | grep -ioP 'Exposure Program \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
+            unset exif_data;
+            NL=$'\n'
+            if [ ! -z "$mime" ]; then exif_data="Type MIME : $mime"; fi
+            if [ ! -z "$make" ]; then exif_data="${exif_data}${NL}Marque de l'appareil : $make"; fi
+            if [ ! -z "$model" ]; then exif_data="${exif_data}${NL}Modèle de l'appareil : $model"; fi
+            if [ ! -z "$date" ]; then exif_data="${exif_data}${NL}Horodotage : $date"; fi
+            if [ ! -z "$exposure_time" ]; then exif_data="${exif_data}${NL}Temps d'exposition : $exposure_time"; fi
+            if [ ! -z "$compensation" ]; then exif_data="${exif_data}${NL}Correction d'exposition : $compensation"; fi
+            if [ ! -z "$flash" ]; then exif_data="${exif_data}${NL}Flash : $flash"; fi
+            if [ ! -z "$focal" ]; then exif_data="${exif_data}${NL}Distance focale : $focal"; fi
+            if [ ! -z "$iso" ]; then exif_data="${exif_data}${NL}Sensibilité ISO : $iso"; fi
+            if [ ! -z "$exposure_program" ]; then exif_data="${exif_data}${NL}Mode d'exposition : $exposure_program"; fi
+            dunstify -t 3000 "$exif_data";
+        done ;;
     "C-Delete")
         while read file; do rm "$file"; done ;;
     "C-c")
