@@ -10,11 +10,11 @@
 # keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
 
 # En mode image, l'action n'est appliquée qu'à l'image active ; en mode
-# vignette, elle est au contraire appliquée à toutes les images marquées ;
-# pour n'appliquer l'action qu'à l'image active, même en mode vignette,
-# supprimer la boucle ; par ex. : read file; rm "$"file" ;;
+# vignette, elle est au contraire appliquée à toutes les images marquées.
 
 case "$1" in
+    "e")
+        while read file; do exif_data=$(exiv2 -q -ps -- "$file"); dunstify -r 4739 -t 3000 "$exif_data"; done ;;
     "C-Delete")
         while read file; do rm "$file"; done ;;
     "C-c")
