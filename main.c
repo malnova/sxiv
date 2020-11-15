@@ -358,9 +358,12 @@ void update_info(void)
 	win_bar_t *l = &win.bar.l, *r = &win.bar.r;
 
 	/* update title contents */
-	snprintf(title, sizeof(title), "%s%s - sxiv",
+	snprintf(title, sizeof(title), "%s%s (%d%%) - sxiv [%d/%d]",
 	    files[fileidx].base,
-	    files[fileidx].flags & FF_MARK ? "* " : "");
+	    files[fileidx].flags & FF_MARK ? "* " : "",
+        (int) (img.zoom * 100.0),
+        fileidx + 1,
+        filecnt);
 	win_set_title(&win, title);
 
 	/* update bar contents */
