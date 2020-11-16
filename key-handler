@@ -13,7 +13,7 @@
 # vignette, elle est au contraire appliquée à toutes les images marquées.
 
 case "$1" in
-    "e")
+    "i")
         while read file ; do
             exif_data=$(exiftool "$file");
             mime=$(echo "$exif_data" | grep -ioP 'MIME Type \K.*' | grep -ioP ':\K.*' | tail -n 1 | xargs);
