@@ -129,6 +129,7 @@ static const keymap_t keys[] = {
 	{ 0,            XK_l,             i_scroll,             DIR_RIGHT },
 	{ 0,            XK_Right,         i_scroll,             DIR_RIGHT },
 	{ 0,            XK_asterisk,      i_set_zoom,           100 },
+	{ 0,            XK_KP_Multiply,   i_set_zoom,           100 },
 	{ 0,            XK_w,             i_fit_to_win,         SCALE_DOWN },
 	{ 0,            XK_W,             i_fit_to_win,         SCALE_WIDTH },
 	{ 0,            XK_H,             i_fit_to_win,         SCALE_HEIGHT },
