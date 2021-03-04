@@ -31,7 +31,7 @@ case "$1" in
             if [ ! -z "$mime" ]; then exif_data="Type MIME : $mime"; fi
             if [ ! -z "$make" ]; then exif_data="${exif_data}${NL}Marque de l'appareil : $make"; fi
             if [ ! -z "$model" ]; then exif_data="${exif_data}${NL}Modèle de l'appareil : $model"; fi
-            if [ ! -z "$date" ]; then exif_data="${exif_data}${NL}Horodotage : $date"; fi
+            if [ ! -z "$date" ]; then exif_data="${exif_data}${NL}Horodatage : $date"; fi
             if [ ! -z "$exposure_time" ]; then exif_data="${exif_data}${NL}Temps d'exposition : $exposure_time"; fi
             if [ ! -z "$compensation" ]; then exif_data="${exif_data}${NL}Correction d'exposition : $compensation"; fi
             if [ ! -z "$flash" ]; then exif_data="${exif_data}${NL}Flash : $flash"; fi
